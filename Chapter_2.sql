@@ -12,7 +12,7 @@ SELECT o.orderid, o.orderdate, o.custid, o.empid
 -- (3) Write a query against the HR.Employees table that returns employees with a last name containing the letter e twice or more:
 SELECT e.empid, e.firstname, e.lastname
   FROM HR.Employees e
- WHERE len(e.lastname) - len(REPLACE(e.lastname,'e','')) >= 2;
+ WHERE len(e.lastname) - len(REPLACE(e.lastname,N'e','')) >= 2;
 
 -- (4) Write a query against the Sales.OrderDetails table that returns orders with a total value (quantity *unitprice) greater
 --     than 10,000, sorted by total value, descending:
@@ -64,8 +64,8 @@ SELECT o.custid, o.orderdate, o.orderid,
 --     based on the title of courtesy. )or '0s.' and '0rs.' return ')emale' for '0r.' return '0ale' and in all other
 --     cases for example, 'Dr.' return 'UnNnown':
 SELECT e.empid, e.firstname, e.lastname, e.titleofcourtesy,
-       CASE WHEN e.titleofcourtesy in ('Ms.','Mrs.') THEN 'Female'
-            WHEN e.titleofcourtesy = 'Mr' THEN 'Male' 
+       CASE WHEN e.titleofcourtesy in (N'Ms.',N'Mrs.') THEN 'Female'
+            WHEN e.titleofcourtesy = N'Mr' THEN 'Male' 
             ELSE 'Unknown' END as gender
   FROM HR.Employees e;
 
